@@ -177,8 +177,8 @@ public class SFinance extends JFrame {
 		JButton btnReset = new JButton("Reset");
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldIncome.setText("");
-				textFieldSalary.setText("");
+				//textFieldIncome.setText("");
+				//textFieldSalary.setText("");
 				textFieldMaintenance.setText("");
 				textFieldUtility.setText("");
 				textFieldAdvert.setText("");
@@ -191,17 +191,21 @@ public class SFinance extends JFrame {
 		JButton btnCalculate = new JButton("Calculate");
 		btnCalculate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				double sales, maintenanceFee, utility, advert, salary, netProfit;
 				
-				double totalExpense = Integer.parseInt(textFieldSalary.getText())
-						+ Integer.parseInt(textFieldMaintenance.getText())
-						+ Integer.parseInt(textFieldUtility.getText())
-						+ Integer.parseInt(textFieldAdvert.getText());
+				sales = Double.parseDouble(textFieldIncome.getText());
+				maintenanceFee = Double.parseDouble(textFieldMaintenance.getText());
+				utility = Double.parseDouble(textFieldUtility.getText());
+				advert = Double.parseDouble(textFieldAdvert.getText());
+				salary = Double.parseDouble(textFieldSalary.getText());
+				
+				double totalExpense = maintenanceFee + utility + advert +salary;
 	
-				double profit = Integer.parseInt(textFieldIncome.getText())- totalExpense;
+				netProfit = sales - totalExpense;
 				
-				textFieldRevenue.setText(String.valueOf(Double.parseDouble(textFieldIncome.getText())));
-				textFieldExpenses.setText(String.valueOf(totalExpense));
-				textFieldNetIncome.setText(String.valueOf(profit));
+				textFieldRevenue.setText(textFieldIncome.getText());
+				textFieldExpenses.setText(Double.toString(totalExpense));
+				textFieldNetIncome.setText(Double.toString(netProfit));
 			}
 		});
 		btnCalculate.setFont(new Font("Rockwell", Font.BOLD, 25));
